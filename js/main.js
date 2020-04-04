@@ -18,7 +18,7 @@ function getData(){
 }
 function get_state_details(j){
 	d3.select('svg').remove()
-	var width = 480,
+	var width = 400,
     height = 450;
 	var pat = "maps/"+j+".json";
 	var ob = j+"_district";
