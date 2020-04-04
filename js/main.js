@@ -225,9 +225,7 @@ function get_state_details(j){
 		centerY = (bounds[0][1]+bounds[1][1])/2 + bd;
 		
 		
-		var touchtime = 0;
-var delay = 800;
-var action = null;
+		var same = null;
 		var projection = d3.geo.mercator()
 		.scale(sc)
 		.center([centerX,centerY]);
@@ -238,22 +236,21 @@ var action = null;
 		.data(featureCollection.features)
 		.enter().append("path")
 		.attr("d", path)
+		.attr("class", "bar allCircles")
 		.on('click', function(d){
-			if((new Date().getTime() - touchtime) < delay){
-				clearTimeout(action)
-				
-				touchtime=0;
+			if(same === d)
+			{
+				same = null;
 				var l = d['properties']['st_nm'];
 				summa(l);
 			}
-			/* Single Click */
-			else{
-				touchtime = new Date().getTime();
-				action = setTimeout(function(){
-					
-				},delay);
+			else
+			{
+					same = d;
+					console.log(same);
+					d3.selectAll('.allCircles').style('fill','#CCCCCC'); //fill all circles black
+					d3.select(this).style("fill", "red");
 			}
-			
 		})
 		.on('mouseout', function(d){
 			document.getElementById('name').innerHTML= "District/State"; 
