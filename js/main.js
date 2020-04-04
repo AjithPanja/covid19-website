@@ -241,7 +241,7 @@ var action = null;
 		.on('click', function(d){
 			if((new Date().getTime() - touchtime) < delay){
 				clearTimeout(action)
-				alert('dbl');
+				
 				touchtime=0;
 				var l = d['properties']['st_nm'];
 				summa(l);
@@ -250,7 +250,7 @@ var action = null;
 			else{
 				touchtime = new Date().getTime();
 				action = setTimeout(function(){
-					alert('single');
+					
 				},delay);
 			}
 			
